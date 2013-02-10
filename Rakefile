@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Cosc480Homework2::Application.load_tasks
+Cosc480Homework3::Application.load_tasks

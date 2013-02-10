@@ -1,6 +1,6 @@
-Cosc480Homework2::Application.routes.draw do
+Cosc480Homework3::Application.routes.draw do
   resources :movies
-  root :to => 'movies#index'
+  root :to => redirect('/movies')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

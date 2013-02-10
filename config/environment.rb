@@ -2,4 +2,4 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-Cosc480Homework2::Application.initialize!
+Cosc480Homework3::Application.initialize!
