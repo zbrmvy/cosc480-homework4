@@ -1,4 +1,4 @@
-COSC 480: Software Engineering for the Cloud - Homework 3
+COSC 480: Software Engineering for the Cloud - Homework 4
 =========================================================
 
 See instructions posted on Moodle for completing this homework.
