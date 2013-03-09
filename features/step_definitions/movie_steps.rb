@@ -2,27 +2,46 @@
 
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
+    x = Movie.new(:title => movie[:title], :rating => movie[:rating], :director_name => movie[:director_name], :release_date => movie[:release_date])
+    x.save
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
   end
-  flunk "Unimplemented"
 end
 
 # Make sure that one string (regexp) occurs before or after another one
-#   on the same page
+# on the same page
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  x = page.body.index(e1)
+  y = page.body.index(e2)
+  assert(x<y)
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  flunk "Unimplemented"
 end
 
 # Make it easier to express checking or unchecking several boxes at once
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
 
+And /I should see all of the movies/ do
+  page.all('table#movies tr').count.should == (Movie.all.count + 1)
+end
+
 When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
+  rating_list.split(',').each do |rating|
+    if uncheck == nil
+      check(rating)
+    else
+      uncheck(rating)
+    end
+  end
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
+
+end
+
+Then /the director of "(.*)" should be "(.*)"/ do |title, director|
+	Movie.where(:title => title)[0].director_name.should == director
 end
